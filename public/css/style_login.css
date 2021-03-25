@@ -1,0 +1,20 @@
+body {
+
+    height: 100vh;
+    background: #0062E6; !important;
+}
+
+
+.container {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: white;
+    border: 5px solid red;
+}
+
+.forget-link {
+    color: #007bff;
+    font-weight: bold;
+}
