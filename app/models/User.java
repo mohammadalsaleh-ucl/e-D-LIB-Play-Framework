@@ -1,6 +1,5 @@
 package models;
 
-
 import java.util.*;
 import javax.persistence.*;
 import javax.validation.Constraint;
@@ -9,20 +8,19 @@ import io.ebean.*;
 import play.data.format.*;
 import play.data.validation.*;
 
+
 @Entity
 public class User extends Model {
 
-
     @Id
     private Long id;
-
     @Constraints.Required
     private String name;
-
     @Constraints.Required
     private String email;
+    @Constraints.Required
+    private String password;
 
-    private int password;
 
 
     public User() {
@@ -30,49 +28,44 @@ public class User extends Model {
 
     }
 
-    public User(Long id, String name, String email, int password) {
-        this.id = id;
+    public User(String name, String email, String password, Long id) {
         this.name = name;
         this.email = email;
         this.password = password;
+        this.id = id;
     }
-
-
-
 
     public Long getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public int getPassword() {
-        return password;
+        return this.id;
     }
 
     public void setId(Long id) {
         this.id = id;
     }
 
+    public String getName() {
+        return this.name;
+    }
+
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getEmail() {
+        return this.email;
     }
 
     public void setEmail(String email) {
         this.email = email;
     }
 
-    public void setPassword(int password) {
-        this.password = password;
+    public String getPassword() {
+        return this.password;
     }
 
-
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
 
 }

@@ -1,2 +1,6 @@
-package dao;public interface UserDAO {
+package dao;
+
+import models.User;
+
+public interface UserDAO {
 }
