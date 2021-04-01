@@ -7,7 +7,7 @@
 GET     /                       controllers.LoginController.main()
 
 
-GET    /validate               controllers.LoginController.validateLoginGet(email, password)
+GET     /validate               controllers.LoginController.validateLoginGet(email, password)
 
 
 # Map static resources from the /public folder to the /assets URL path

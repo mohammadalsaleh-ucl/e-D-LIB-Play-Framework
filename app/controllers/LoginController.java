@@ -1,5 +1,8 @@
 package controllers;
 
+
+import models.User;
+import dao.UserDAO;
 import play.mvc.*;
 import views.html.login.main;
 import views.html.admin.adminmain;
@@ -10,24 +13,23 @@ import views.html.admin.adminmain;
  */
 public class LoginController extends Controller {
 
-    /**
-     *
-     * An action that renders an HTML page with a welcome message.
-     * The configuration in the <code>routes</code> file means that
-     * this method will be called when the application receives a
-     * <code>GET</code> request with a path of <code>/</code>.
-     */
-
-    //FormFactory formFactory;
 
     public Result main() { return ok(main.render()); }
 
 
     public Result validateLoginGet(String email , String password) {
-       // DynamicForm requestData = formFactory.form().bindFromRequest(request);
-       // String email = requestData.get(email);
-       // String password = requestData.get("password");
-        return ok("Hello " + email + " " + password);
+
+        UserDAO userDAO = new UserDAO();
+        String msg = "";
+        boolean isValid = userDAO.findUser(email, password);
+        if(isValid) {
+            msg = "Welcome " + email + "!";
+        } else {
+            //
+            msg = "Invalid credentials";
+        }
+
+        return ok("Hello " + email + " " + password + msg);
 
     }
 
