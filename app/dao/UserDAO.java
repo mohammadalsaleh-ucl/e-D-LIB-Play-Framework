@@ -12,13 +12,13 @@ public class UserDAO {
 
 
     @Transactional
-    public boolean findUser(String username, String password) {
+    public boolean findUser(String email, String password) {
         System.out.println("In Check login");
         boolean userFound = false;
 
         User user = DB.find(User.class)
                 .where()
-                .eq("EMAIL", username)
+                .eq("EMAIL", email)
                 .and().eq("PASSWORD", password)
                 .findOne();
         /*qlRow row =

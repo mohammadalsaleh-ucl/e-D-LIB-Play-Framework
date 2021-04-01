@@ -4,8 +4,7 @@ package controllers;
 import models.User;
 import dao.UserDAO;
 import play.mvc.*;
-import views.html.login.main;
-import views.html.admin.adminmain;
+import views.html.*;
 
 /**
  * This controller contains an action to handle HTTP requests
@@ -14,7 +13,7 @@ import views.html.admin.adminmain;
 public class LoginController extends Controller {
 
 
-    public Result main() { return ok(main.render()); }
+    public Result main() { return ok(login.render()); }
 
 
     public Result validateLoginGet(String email , String password) {
@@ -29,7 +28,7 @@ public class LoginController extends Controller {
             msg = "Invalid credentials";
         }
 
-        return ok("Hello " + email + " " + password + msg);
+        return ok(dashboard.render());
 
     }
 
