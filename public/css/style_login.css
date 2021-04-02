@@ -1,20 +1,15 @@
-body {
 
+.image-container{
+    background: url("../images/login_background.png")  no-repeat;
+    background-size: 600px 1024px;
     height: 100vh;
-    background: #0062E6; !important;
+    background-color:#20B2FF;
+
 }
 
-
-.container {
-    height: 100%;
+.form-container{
+    background-color:#20B2FF;
     display: flex;
     justify-content: center;
-    align-items: center;
-    background: white;
-    border: 5px solid red;
-}
 
-.forget-link {
-    color: #007bff;
-    font-weight: bold;
 }

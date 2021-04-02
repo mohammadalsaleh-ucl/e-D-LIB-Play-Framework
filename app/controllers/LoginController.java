@@ -5,6 +5,9 @@ import models.User;
 import dao.UserDAO;
 import play.mvc.*;
 import views.html.*;
+import views.html.login.*;
+import views.html.admin.*;
+
 
 /**
  * This controller contains an action to handle HTTP requests
