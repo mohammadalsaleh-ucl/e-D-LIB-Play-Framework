@@ -26,6 +26,8 @@ public class LoginController extends Controller {
 
     public Result validateLoginGet(String email , String password) {
 
+        List<User> usersList=UserDAO.find.all();
+
         UserDAO userDAO = new UserDAO();
         String msg = "";
         boolean isValid = userDAO.findUser(email, password);
@@ -36,7 +38,7 @@ public class LoginController extends Controller {
             msg = "Invalid credentials";
         }
 
-        return ok(dashboard.render());
+        return ok(users.render(usersList));
 
     }
 

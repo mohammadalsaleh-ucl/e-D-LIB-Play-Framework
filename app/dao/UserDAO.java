@@ -38,4 +38,8 @@ public class UserDAO {
     }
 
     public static Finder<Long,User> find = new Finder<>(User.class);
+
+
+    public
+
 }
