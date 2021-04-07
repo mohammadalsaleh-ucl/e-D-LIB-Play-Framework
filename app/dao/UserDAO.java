@@ -1,6 +1,7 @@
 package dao;
 
 import io.ebean.DB;
+import io.ebean.Finder;
 import io.ebean.Query;
 import io.ebean.SqlRow;
 import io.ebean.annotation.Transactional;
@@ -35,4 +36,6 @@ public class UserDAO {
 
         return userFound;
     }
+
+    public static Finder<Long,User> find = new Finder<>(User.class);
 }

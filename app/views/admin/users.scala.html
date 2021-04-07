@@ -1,0 +1,35 @@
+
+
+@import models.User
+
+@(userList: List[User])
+@main("users"){
+
+    <table class="table table-hover">
+        <thead>
+            <th scope="col">ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">Category</th>
+            <th scope="col">Description</th>
+            <th scope="col">Stock</th>
+            <th scope="col">Price</th>
+        </thead>
+        <tbody>
+            @* Iterate through products, adding a new row for each in the list *@
+            @* for each product in the products list *@
+            @for(user <- userList) {
+                <tr scope="row">
+                    <td>@user.getId</td>
+                    <td>@user.getUsername</td>
+                    @* Get category for this product then getName *@
+                    <td>@user.getEmail</td>
+                </tr>
+            } @* End for loop*@
+        </tbody>
+        <tfoot>
+            <tr scope="row">
+
+            </tr>
+        </tfoot>
+    </table>
+}

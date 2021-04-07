@@ -7,6 +7,11 @@ import play.mvc.*;
 import views.html.*;
 import views.html.login.*;
 import views.html.admin.*;
+import play.db.ebean.Transactional;
+import java.util.List;
+import java.util.ArrayList;
+
+
 
 
 /**
@@ -33,6 +38,12 @@ public class LoginController extends Controller {
 
         return ok(dashboard.render());
 
+    }
+
+    public Result users() {
+
+        List<User> usersList=UserDAO.find.all();
+        return ok(users.render(usersList));
     }
 
 

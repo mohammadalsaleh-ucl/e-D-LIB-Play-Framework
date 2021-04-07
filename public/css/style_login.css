@@ -1,15 +1,25 @@
 
-.image-container{
-    background: url("../images/login_background.png")  no-repeat;
-    background-size: 600px 1024px;
-    height: 100vh;
+.form-login{
+    align-items: center;
+    background-color: #fff;
+
+}
+
+.container-fluid{
+
     background-color:#20B2FF;
+
+}
+.image-container{
+    background: url("../images/login_background.png") center no-repeat;
+    background-size: 70%;
+    height: 100vh;
+
 
 }
 
 .form-container{
-    background-color:#20B2FF;
     display: flex;
     justify-content: center;
-
+    background-color: #fff;
 }
