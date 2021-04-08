@@ -21,13 +21,6 @@ public class UserDAO {
                 .eq("EMAIL", email)
                 .and().eq("PASSWORD", password)
                 .findOne();
-        /*qlRow row =
-                DB.sqlQuery(query)
-                        .setParameter(0, username)
-                        .setParameter(1, password)
-                        .findOne();
-        System.out.println(row.get("name"));*/
-
         if (user != null){
             userFound = true;
         }
