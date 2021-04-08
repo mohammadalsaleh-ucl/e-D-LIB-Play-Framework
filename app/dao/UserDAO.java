@@ -14,7 +14,6 @@ public class UserDAO {
 
     @Transactional
     public boolean findUser(String email, String password) {
-        System.out.println("In Check login");
         boolean userFound = false;
 
         User user = DB.find(User.class)
@@ -40,6 +39,21 @@ public class UserDAO {
     public static Finder<Long,User> find = new Finder<>(User.class);
 
 
-    public
+    @Transactional
+    public boolean saveUser(User user) {
+
+        System.out.println("In Check save");
+        boolean userSave = false;
+
+        DB.save(user);
+
+        if (user != null){
+            userSave = true;
+        }
+        System.out.println(userSave);
+
+        return userSave;
+    }
+
 
 }

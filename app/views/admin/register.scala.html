@@ -1,15 +1,11 @@
-@(addUserForm: Form[models.User])
+@import views.html.admin.dashboard;
 
 @import helper._
 
-@import views.html.admin.dashboard;
-
 @dashboard("register") {
+    <h3>Add a new User </h3>
 
-
-    <h3>Add a new Product</h3>
-
-    <form method="get" action=/register >
+    <form method="get" action=/addusers >
 
         <div class="form-group">
             <label for="username">User Name:</label>
@@ -26,4 +22,6 @@
 
         <button type="submit" class="btn btn-primary">Add User</button>
     </form>
+
+
 }

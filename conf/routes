@@ -12,9 +12,15 @@ GET     /validate               controllers.LoginController.validateLoginGet(ema
 
 GET     /users                   controllers.LoginController.users()
 
-GET     /addUsers                controllers.RegisterController.addUsers()
 
-POST    /addUserSubmit           controllers.RegisterController.addUserSubmit()
+
+GET     /registerform             controllers.RegisterController.register()
+
+
+
+GET     /addusers                controllers.RegisterController.registerUser(username, email, password)
+
+#POST    /addUserSubmit           controllers.RegisterController.addUserSubmit()
 
 
 # Map static resources from the /public folder to the /assets URL path

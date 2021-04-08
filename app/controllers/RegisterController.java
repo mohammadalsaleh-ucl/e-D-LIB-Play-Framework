@@ -20,11 +20,23 @@ public class RegisterController extends Controller {
 
 
 
-     @Transactional
-     public Result registerUser(){
+
+    public Result register() { return ok(register.render()); }
 
 
-         return ok(register.render(addUserForm));
+    @Transactional
+     public Result registerUser(String username,String email, String password){
+
+         User user= new User();
+         user.setUsername(username);
+         user.setEmail(email);
+         user.setPassword(password);
+         UserDAO userDAO = new UserDAO();
+
+         boolean isValid = userDAO.saveUser(user);
+
+
+         return ok(register.render());
      }
 
 }
