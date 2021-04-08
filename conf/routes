@@ -7,7 +7,7 @@
 GET     /                       controllers.LoginController.main()
 
 
-GET     /validate               controllers.LoginController.validateLoginGet(email, password)
+POST     /validate               controllers.LoginController.validateLoginGet()
 
 
 GET     /users                   controllers.LoginController.users()

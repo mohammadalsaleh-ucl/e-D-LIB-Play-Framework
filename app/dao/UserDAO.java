@@ -6,10 +6,12 @@ import io.ebean.Query;
 import io.ebean.SqlRow;
 import io.ebean.annotation.Transactional;
 import models.User;
+import services.UserInt;
+
 
 import java.util.List;
 
-public class UserDAO {
+public class UserDAO implements UserInt {
 
 
     @Transactional
@@ -47,6 +49,7 @@ public class UserDAO {
 
         return userSave;
     }
+
 
 
 }

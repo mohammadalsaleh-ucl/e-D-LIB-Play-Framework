@@ -1,22 +1,22 @@
 package controllers;
 
+import com.google.inject.Guice;
 import models.User;
 import dao.UserDAO;
+import module.CoreModule;
 
-import play.data.Form;
-import play.data.FormFactory;
+import com.google.inject.Injector;
 import play.mvc.*;
-import views.html.*;
-import views.html.login.*;
+
+import services.UserInt;
 import views.html.admin.*;
 import play.db.ebean.Transactional;
-import java.util.List;
-import java.util.ArrayList;
-import javax.inject.Inject;
-import views.html.admin.*;
+
 
 
 public class RegisterController extends Controller {
+
+
 
 
 
@@ -31,9 +31,17 @@ public class RegisterController extends Controller {
          user.setUsername(username);
          user.setEmail(email);
          user.setPassword(password);
-         UserDAO userDAO = new UserDAO();
 
-         boolean isValid = userDAO.saveUser(user);
+
+        Injector injector= Guice.createInjector(new CoreModule());
+        UserInt s=injector.getInstance(UserInt.class);
+        // UserDAO userDAO = new UserDAO();
+         /* User ser=injector.getInstance(User.class);
+
+        ser.setUsername(username);
+        ser.setEmail(email);
+        ser.setPassword(password);*/
+         boolean isValid = s.saveUser(user);
 
 
          return ok(register.render());

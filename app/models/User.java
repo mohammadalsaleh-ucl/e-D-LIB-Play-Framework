@@ -7,6 +7,7 @@ import javax.validation.Constraint;
 import io.ebean.*;
 import play.data.format.*;
 import play.data.validation.*;
+import services.UserInt;
 
 
 @Entity

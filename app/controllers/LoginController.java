@@ -1,8 +1,11 @@
 package controllers;
 
 
+import com.google.inject.Inject;
 import models.User;
 import dao.UserDAO;
+import play.data.Form;
+import play.data.FormFactory;
 import play.mvc.*;
 import views.html.*;
 import views.html.login.*;
@@ -21,22 +24,25 @@ import java.util.ArrayList;
 public class LoginController extends Controller {
 
 
+    @Inject
+    FormFactory formFactory;
+
     public Result main() { return ok(login.render()); }
 
 
-    public Result validateLoginGet(String email , String password) {
+    public Result validateLoginGet() {
 
         List<User> usersList=UserDAO.find.all();
-
+        Form userForm = formFactory.form(User.class);
         UserDAO userDAO = new UserDAO();
         String msg = "";
-        boolean isValid = userDAO.findUser(email, password);
-        if(isValid) {
+       // boolean isValid = userDAO.findUser(email, password);
+     /*   if(isValid) {
             msg = "Welcome " + email + "!";
         } else {
             //
             msg = "Invalid credentials";
-        }
+        }*/
 
 
         return ok(users.render(usersList));
