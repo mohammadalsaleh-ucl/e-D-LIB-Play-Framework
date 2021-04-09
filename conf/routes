@@ -6,7 +6,7 @@
 
 GET     /                       controllers.LoginController.main()
 
-
++nocsrf
 POST     /validate               controllers.LoginController.validateLoginGet()
 
 
