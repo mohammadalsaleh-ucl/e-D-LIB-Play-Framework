@@ -6,35 +6,18 @@
 @dashboard("register") {
     <h3>Add a new User </h3>
 
-   @* <form method="get" action=/addusers >
-
-        <div class="form-group">
-            <label for="username">User Name:</label>
-            <input type="username" class="form-control" placeholder="Enter Username" id="username" name="username">
-        </div>
-        <div class="form-group">
-            <label for="email">Email address:</label>
-            <input type="email" class="form-control" placeholder="Enter email" id="email" name="email">
-        </div>
-        <div class="form-group">
-            <label for="pwd">Password:</label>
-            <input type="password" class="form-control" placeholder="Enter password" id="pwd" name="password">
-        </div>
-
-        <button type="submit" class="btn btn-primary">Add User</button>
-    </form>*@
-
     @helper.form(action=routes.RegisterController.registerUser(),Symbol("method")-> "post") {
         @helper.CSRF.formField
 
+        <div class="form-group">
+            @helper.inputText(forms("username"),Symbol("type") -> "text",Symbol("class") -> "form-control")
 
-        @helper.inputText(forms("username"))
+            @helper.inputText(forms("email"),Symbol("type") -> "email",Symbol("class") -> "form-control")
 
-        @helper.inputText(forms("email"))
+            @helper.inputText(forms("password"),Symbol("type") -> "password",Symbol("class") -> "form-control")
 
-        @helper.inputText(forms("password"))
-
-        <button type="submit">Add User</button>
+            <button type="submit" class="btn btn-primary">Add User</button>
+        </div>
     }
 
 

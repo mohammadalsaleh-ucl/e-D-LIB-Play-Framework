@@ -1,0 +1,24 @@
+@import play.mvc.Http.Request
+@(formproject: Form[User])(implicit request: Request, messages: play.i18n.Messages)
+@import views.html.admin.dashboard;
+@import helper._
+
+@dashboard("projects") {
+    <h3>Add a new User </h3>
+
+    @helper.form(action=routes.ProjectController.addProject(),Symbol("method")-> "post") {
+        @helper.CSRF.formField
+
+        <div class="form-group">
+            @helper.inputText(formproject("title"),Symbol("type") -> "text",Symbol("class") -> "form-control")
+
+            @helper.textarea(formproject("text"),Symbol("class") -> "form-control")
+
+
+            <button type="submit" class="btn btn-primary">Add Project</button>
+        </div>
+    }
+
+
+
+}

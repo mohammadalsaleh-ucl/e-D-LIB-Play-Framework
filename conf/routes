@@ -7,10 +7,10 @@
 GET     /                       controllers.LoginController.main(request: Request)
 
 +nocsrf
-POST     /validate               controllers.LoginController.validateLoginGet(request: Request)
+POST     /validate               controllers.LoginController.validateLogin(request: Request)
 
 
-GET     /users                   controllers.LoginController.users()
+GET     /users                   controllers.UsersController.users()
 
 
 
@@ -20,6 +20,12 @@ GET     /registerform             controllers.RegisterController.register(reques
 +nocsrf
 POST     /addusers                controllers.RegisterController.registerUser(request: Request)
 
+
+
+GET     /projectform             controllers.ProjectController.projects(request: Request)
+
++nocsrf
+POST     /addprojects                controllers.ProjectController.addProject(request: Request)
 #POST    /addUserSubmit           controllers.RegisterController.addUserSubmit()
 
 

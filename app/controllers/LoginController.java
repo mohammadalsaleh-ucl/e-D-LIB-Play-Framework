@@ -45,49 +45,30 @@ public class LoginController extends Controller {
     }
 
     public Result main(Http.Request request) {
-
-        return ok(login.render(form, request, messagesApi.preferred(request)));
-
+        return ok(login.render(form, request, messagesApi.preferred(request),request.flash()));
     }
 
-
-    public Result validateLoginGet(Http.Request request) {
-
-
+    @Transactional
+    public Result validateLogin(Http.Request request) {
         final Form<User> boundForm = form.bindFromRequest(request);
-
         List<User> usersList=UserDAO.find.all();
-      //  Form<User> userForm = formFactory.form(User.class);
-
+            if (boundForm.hasErrors()) {
+                return badRequest(login.render(form, request, messagesApi.preferred(request),request.flash()));
+            }
          User data = boundForm.get();
-        //System.out.println(data.getEmail());
-
-       // User user = userForm.bind(anyData).get();
-       // User user = userForm.bindFromRequest().get();
-
          UserDAO userDAO = new UserDAO();
-        String msg = "";
+         String msg = "";
          boolean isValid = userDAO.findUser(data.getEmail(), data.getPassword());
-      if(isValid) {
+         if(isValid) {
             msg = "Welcome " + data.getEmail() + "!";
-        } else {
+         } else {
             //
-            msg = "Invalid credentials";
-        }
-
-
-      System.out.println(msg);
-
-        return ok(users.render(usersList));
-
+            // msg = "Invalid credentials";
+             return redirect(routes.LoginController.main());
+         }
+         System.out.println(msg);
+         return redirect(routes.UsersController.users());
     }
-
-    public Result users() {
-
-        List<User> usersList=UserDAO.find.all();
-        return ok(users.render(usersList));
-    }
-
 
 
 }
