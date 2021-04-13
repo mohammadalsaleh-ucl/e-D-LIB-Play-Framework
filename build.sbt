@@ -15,4 +15,6 @@ libraryDependencies += "com.h2database" % "h2" % "1.4.196"
 
 libraryDependencies += "org.webjars" % "bootstrap" % "4.6.0"
 
+libraryDependencies += javaForms
+
 libraryDependencies += guice

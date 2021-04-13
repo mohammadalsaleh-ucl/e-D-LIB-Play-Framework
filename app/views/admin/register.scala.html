@@ -1,11 +1,12 @@
+@import play.mvc.Http.Request
+@(forms: Form[User])(implicit request: Request, messages: play.i18n.Messages)
 @import views.html.admin.dashboard;
-
 @import helper._
 
 @dashboard("register") {
     <h3>Add a new User </h3>
 
-    <form method="get" action=/addusers >
+   @* <form method="get" action=/addusers >
 
         <div class="form-group">
             <label for="username">User Name:</label>
@@ -21,7 +22,21 @@
         </div>
 
         <button type="submit" class="btn btn-primary">Add User</button>
-    </form>
+    </form>*@
+
+    @helper.form(action=routes.RegisterController.registerUser(),Symbol("method")-> "post") {
+        @helper.CSRF.formField
+
+
+        @helper.inputText(forms("username"))
+
+        @helper.inputText(forms("email"))
+
+        @helper.inputText(forms("password"))
+
+        <button type="submit">Add User</button>
+    }
+
 
 
 }

@@ -4,21 +4,21 @@
 
 # An example controller showing a sample home page
 
-GET     /                       controllers.LoginController.main()
+GET     /                       controllers.LoginController.main(request: Request)
 
 +nocsrf
-POST     /validate               controllers.LoginController.validateLoginGet()
+POST     /validate               controllers.LoginController.validateLoginGet(request: Request)
 
 
 GET     /users                   controllers.LoginController.users()
 
 
 
-GET     /registerform             controllers.RegisterController.register()
+GET     /registerform             controllers.RegisterController.register(request: Request)
 
 
-
-GET     /addusers                controllers.RegisterController.registerUser(username, email, password)
++nocsrf
+POST     /addusers                controllers.RegisterController.registerUser(request: Request)
 
 #POST    /addUserSubmit           controllers.RegisterController.addUserSubmit()
 

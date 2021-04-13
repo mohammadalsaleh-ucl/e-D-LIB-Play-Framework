@@ -15,7 +15,7 @@ public class User extends Model {
 
     @Id
     private Long id;
-    @Constraints.Required
+
     private String username;
     @Constraints.Required
     private String email;
