@@ -31,13 +31,13 @@ public class RegisterController extends Controller {
         this.userDAO = userDAO;
     }
 
-    public Result register(Http.Request request) {
+    public Result viewRregister(Http.Request request) {
         return ok(register.render(form, request, messagesApi.preferred(request)));
     }
 
 
      @Transactional
-     public Result registerUser(Http.Request request){
+     public Result userRegister(Http.Request request){
          final Form<User> boundForm = form.bindFromRequest(request);
          User data = boundForm.get();;
          UserDAO userDAO4 = new UserDAO();

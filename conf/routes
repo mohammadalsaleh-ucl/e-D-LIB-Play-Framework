@@ -4,28 +4,28 @@
 
 # An example controller showing a sample home page
 
-GET     /                       controllers.LoginController.main(request: Request)
+GET     /                       controllers.LoginController.viewLogin(request: Request)
 
 +nocsrf
-POST     /validate               controllers.LoginController.validateLogin(request: Request)
+POST     /validate               controllers.LoginController.userLogin(request: Request)
 
 
 GET     /users                   controllers.UsersController.users()
 
 
 
-GET     /registerform             controllers.RegisterController.register(request: Request)
+GET     /registerform             controllers.RegisterController.viewRregister(request: Request)
 
 
 +nocsrf
-POST     /addusers                controllers.RegisterController.registerUser(request: Request)
+POST     /addusers                controllers.RegisterController.userRegister(request: Request)
 
 
 
-GET     /projectform             controllers.ProjectController.projects(request: Request)
+GET     /projectform             controllers.ProjectController.viewProject(request: Request)
 
 +nocsrf
-POST     /addprojects                controllers.ProjectController.addProject(request: Request)
+POST     /addprojects                controllers.ProjectController.projectRegister(request: Request)
 #POST    /addUserSubmit           controllers.RegisterController.addUserSubmit()
 
 

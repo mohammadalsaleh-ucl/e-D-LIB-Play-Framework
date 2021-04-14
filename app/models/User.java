@@ -10,6 +10,7 @@ import play.data.validation.*;
 public class User extends Model {
 
     @Id
+    @GeneratedValue
     private Long id;
 
     private String username;

@@ -44,16 +44,17 @@ public class LoginController extends Controller {
 
     }
 
-    public Result main(Http.Request request) {
-        return ok(login.render(form, request, messagesApi.preferred(request),request.flash()));
+    public Result viewLogin(Http.Request request) {
+
+        return ok(login.render(form, request, messagesApi.preferred(request)));
     }
 
     @Transactional
-    public Result validateLogin(Http.Request request) {
+    public Result userLogin(Http.Request request) {
         final Form<User> boundForm = form.bindFromRequest(request);
         List<User> usersList=UserDAO.find.all();
             if (boundForm.hasErrors()) {
-                return badRequest(login.render(form, request, messagesApi.preferred(request),request.flash()));
+                return badRequest(login.render(form, request, messagesApi.preferred(request)));
             }
          User data = boundForm.get();
          UserDAO userDAO = new UserDAO();
@@ -64,7 +65,7 @@ public class LoginController extends Controller {
          } else {
             //
             // msg = "Invalid credentials";
-             return redirect(routes.LoginController.main());
+             return redirect(routes.LoginController.viewLogin());
          }
          System.out.println(msg);
          return redirect(routes.UsersController.users());

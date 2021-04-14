@@ -4,7 +4,7 @@ organization := "com.uclouvain"
 
 version := "1.0-SNAPSHOT"
 
-lazy val root = (project in file(".")).enablePlugins(PlayJava, PlayEbean)
+lazy val root = (project in file(".")).enablePlugins(PlayJava, PlayEbean ,PlayEnhancer)
 
 scalaVersion := "2.13.3"
 
