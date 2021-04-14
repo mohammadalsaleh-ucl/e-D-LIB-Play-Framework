@@ -4,6 +4,7 @@ import io.ebean.DB;
 import io.ebean.Finder;
 import io.ebean.annotation.Transactional;
 import models.User;
+import org.mindrot.jbcrypt.BCrypt;
 
 public class UserDAO implements UserServices {
 
@@ -15,11 +16,17 @@ public class UserDAO implements UserServices {
         User user = DB.find(User.class)
                 .where()
                 .eq("EMAIL", email)
-                .and().eq("PASSWORD", password)
+             //   .and().eq("PASSWORD", password)
                 .findOne();
-        if (user != null){
-            userFound = true;
-        }
+
+        System.out.println(user.getPassword());
+        System.out.println(password);
+
+        if (BCrypt.checkpw(password, user.getPassword()))
+            userFound=true;
+        else
+            userFound=false;
+
         return userFound;
     }
 

@@ -14,7 +14,7 @@ GET     /users                   controllers.UsersController.users()
 
 
 
-GET     /registerform             controllers.RegisterController.viewRregister(request: Request)
+GET     /registerform             controllers.RegisterController.viewRegister(request: Request)
 
 
 +nocsrf

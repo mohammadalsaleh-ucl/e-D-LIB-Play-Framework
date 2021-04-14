@@ -18,3 +18,5 @@ libraryDependencies += "org.webjars" % "bootstrap" % "4.6.0"
 libraryDependencies += javaForms
 
 libraryDependencies += guice
+
+libraryDependencies +="org.mindrot" % "jbcrypt" % "0.3m"

@@ -11,6 +11,7 @@ import play.mvc.*;
 
 import views.html.admin.*;
 import play.db.ebean.Transactional;
+import dao.Hashhelper;
 
 
 
@@ -23,6 +24,7 @@ public class RegisterController extends Controller {
     FormFactory formFactory;
     private UserDAO userDAO;
     private User user;
+    private Hashhelper hashhelper;
 
     @Inject
     public RegisterController(FormFactory formFactory, MessagesApi messagesApi) {
@@ -31,7 +33,7 @@ public class RegisterController extends Controller {
         this.userDAO = userDAO;
     }
 
-    public Result viewRregister(Http.Request request) {
+    public Result viewRegister(Http.Request request) {
         return ok(register.render(form, request, messagesApi.preferred(request)));
     }
 
@@ -39,7 +41,28 @@ public class RegisterController extends Controller {
      @Transactional
      public Result userRegister(Http.Request request){
          final Form<User> boundForm = form.bindFromRequest(request);
-         User data = boundForm.get();;
+         User data = boundForm.get();
+
+         //System.out.println(data.getPassword());
+
+        // String firstpass=hashhelper.createPassword(data.getPassword());
+       //  System.out.println(firstpass);
+
+         data.setPassword(hashhelper.createPassword(data.getPassword()));
+       //  System.out.println(data.getPassword());
+
+         /*   String hi= hashhelper.createPassword(password);
+        if (BCrypt.checkpw("1212", hi))
+            System.out.println("It matches user");
+        else
+            System.out.println("It does not match user");
+
+        String firstpass=hashhelper.createPassword(password);
+
+        System.out.println(firstpass);
+
+        */
+
          UserDAO userDAO4 = new UserDAO();
          boolean isValid = userDAO4.saveUser(data);
          return ok(register.render(form, request, messagesApi.preferred(request)));
