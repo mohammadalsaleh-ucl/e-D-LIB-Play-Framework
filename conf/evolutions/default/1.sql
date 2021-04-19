@@ -3,6 +3,16 @@
 
 # --- !Ups
 
+<<<<<<< HEAD
+=======
+create table project (
+  id                            bigint auto_increment not null,
+  title                         varchar(255),
+  content                       varchar(255),
+  constraint pk_project primary key (id)
+);
+
+>>>>>>> origin/test
 create table user (
   id                            bigint auto_increment not null,
   username                      varchar(255),
@@ -14,5 +24,10 @@ create table user (
 
 # --- !Downs
 
+<<<<<<< HEAD
+=======
+drop table if exists project;
+
+>>>>>>> origin/test
 drop table if exists user;
 

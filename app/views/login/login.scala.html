@@ -1,14 +1,13 @@
 @import play.mvc.Http.Request
-@import play.mvc.Http.Flash
 @import helper._
-@(form: Form[User])(implicit request: Request, messages: play.i18n.Messages,flash: Flash)
+@(form: Form[User])(implicit request: Request, messages: play.i18n.Messages)
 @import views.html.login.main;
 
 @main("Home Page"){
 
 
 
-               @helper.form(action=routes.LoginController.validateLogin(),Symbol("class") -> "form-login",Symbol("method")-> "post") {
+               @helper.form(action=routes.LoginController.userLogin(),Symbol("class") -> "form-login",Symbol("method")-> "post") {
                        @helper.CSRF.formField
                        <div class="form-group">
                        @helper.inputText(form("Email"),Symbol("type") -> "email",Symbol("class") -> "form-control")

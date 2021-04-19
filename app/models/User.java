@@ -2,14 +2,18 @@ package models;
 
 import javax.persistence.*;
 
+import dao.UserDAO;
 import io.ebean.*;
+import org.mindrot.jbcrypt.BCrypt;
 import play.data.validation.*;
+
 
 
 @Entity
 public class User extends Model {
 
     @Id
+    @GeneratedValue
     private Long id;
 
     private String username;
@@ -17,6 +21,8 @@ public class User extends Model {
     private String email;
     @Constraints.Required
     private String password;
+
+
 
 
 
@@ -49,7 +55,8 @@ public class User extends Model {
     }
 
     public void setPassword(String password) {
-        this.password = password;
+    this.password = password;
+
     }
 
 

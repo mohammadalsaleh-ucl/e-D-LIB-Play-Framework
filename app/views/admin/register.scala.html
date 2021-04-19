@@ -6,7 +6,7 @@
 @dashboard("register") {
     <h3>Add a new User </h3>
 
-    @helper.form(action=routes.RegisterController.registerUser(),Symbol("method")-> "post") {
+    @helper.form(action=routes.RegisterController.userRegister(),Symbol("method")-> "post") {
         @helper.CSRF.formField
 
         <div class="form-group">

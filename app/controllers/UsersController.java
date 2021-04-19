@@ -4,7 +4,7 @@ import dao.UserDAO;
 import models.User;
 import play.mvc.Controller;
 import play.mvc.Result;
-import views.html.admin.users;
+import views.html.admin.*;
 
 import java.util.List;
 

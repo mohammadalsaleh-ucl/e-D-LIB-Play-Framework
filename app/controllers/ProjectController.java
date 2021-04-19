@@ -32,12 +32,12 @@ public class ProjectController extends Controller {
         this.userDAO = userDAO;
     }
 
-    public Result projects(Http.Request request) {
+    public Result viewProject(Http.Request request) {
         return ok(project.render(form, request, messagesApi.preferred(request)));
     }
 
     @Transactional
-    public Result addProject(Http.Request request){
+    public Result projectRegister(Http.Request request){
 
         return ok();
     }

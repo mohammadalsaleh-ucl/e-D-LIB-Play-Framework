@@ -1,14 +1,19 @@
 package models;
 
-import io.ebean.Model;
-import play.data.validation.Constraints;
 
-import javax.persistence.Id;
+import javax.persistence.*;
 
+import io.ebean.*;
+import play.data.validation.*;
+import javax.persistence.*;
+
+
+@Entity
 public class Project extends Model {
 
     @Id
     private Long id;
+
     private String title;
     private String content;
 

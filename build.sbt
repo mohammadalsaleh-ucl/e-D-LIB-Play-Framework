@@ -4,7 +4,7 @@ organization := "com.uclouvain"
 
 version := "1.0-SNAPSHOT"
 
-lazy val root = (project in file(".")).enablePlugins(PlayJava, PlayEbean)
+lazy val root = (project in file(".")).enablePlugins(PlayJava, PlayEbean ,PlayEnhancer)
 
 scalaVersion := "2.13.3"
 
@@ -18,3 +18,5 @@ libraryDependencies += "org.webjars" % "bootstrap" % "4.6.0"
 libraryDependencies += javaForms
 
 libraryDependencies += guice
+
+libraryDependencies +="org.mindrot" % "jbcrypt" % "0.3m"

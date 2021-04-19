@@ -4,6 +4,7 @@
  * two arguments, a `String` for the title of the page and an `Html`
  * object to insert into the body of the page.
  *@
+
 @(title: String)(content: Html)
 
 
@@ -28,7 +29,8 @@
                 <div class="col-lg-6 col-md-6 form-container">
         @* And here's where we render the `Html` object containing
          * the page content. *@
-        @content
+
+                    @content
 
 
 
