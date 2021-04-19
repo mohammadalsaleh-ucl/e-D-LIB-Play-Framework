@@ -21,6 +21,17 @@
                         <td>@user.getId</td>
                         <td>@user.getUsername</td>
                         <td>@user.getEmail</td>
+                        <td>
+                            <a href="@routes.UsersController.deleteUser(user.getId)" class="btn btn-outline-danger btn-sm"
+                            onclick="return confirmDel();">
+                                <i class="far fa-trash-alt"></i></a>
+                        </td>
+
+                        <td>
+
+                            <a href="@routes.UsersController.updateUser(user.getId)" class="btn btn-outline-danger btn-sm">
+                                <i class="far fa-edit"></i></a>
+                        </td>
                     </tr>
                 }
             </tbody>

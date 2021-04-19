@@ -1,7 +1,9 @@
 package controllers;
 
 import com.google.inject.Inject;
+import dao.ProjectDAO;
 import dao.UserDAO;
+import models.Project;
 import models.User;
 import play.data.Form;
 import play.data.FormFactory;
@@ -17,8 +19,7 @@ import views.html.admin.*;
 public class ProjectController extends Controller {
 
 
-
-    private final Form<User> form;
+    private final Form<Project> form;
     private MessagesApi messagesApi;
     @Inject
     FormFactory formFactory;
@@ -27,7 +28,7 @@ public class ProjectController extends Controller {
 
     @Inject
     public ProjectController(FormFactory formFactory, MessagesApi messagesApi) {
-        this.form = formFactory.form(User.class);
+        this.form = formFactory.form(Project.class);
         this.messagesApi = messagesApi;
         this.userDAO = userDAO;
     }
@@ -38,7 +39,10 @@ public class ProjectController extends Controller {
 
     @Transactional
     public Result projectRegister(Http.Request request){
-
-        return ok();
+        final Form<Project> boundForm = form.bindFromRequest(request);
+        Project data = boundForm.get();
+        ProjectDAO projectDAO = new ProjectDAO();
+        boolean isValid = projectDAO.saveProject(data);
+        return ok(project.render(form, request, messagesApi.preferred(request)));
     }
 }
