@@ -7,6 +7,7 @@ import io.ebean.*;
 import org.mindrot.jbcrypt.BCrypt;
 import play.data.validation.*;
 
+import java.sql.Blob;
 
 
 @Entity
@@ -21,6 +22,7 @@ public class User extends Model {
     private String email;
     @Constraints.Required
     private String password;
+
 
 
 

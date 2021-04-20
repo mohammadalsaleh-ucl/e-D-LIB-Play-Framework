@@ -6,6 +6,7 @@ import javax.persistence.*;
 import io.ebean.*;
 import play.data.validation.*;
 import javax.persistence.*;
+import java.sql.Blob;
 
 
 @Entity
@@ -17,6 +18,8 @@ public class Project extends Model {
     private String title;
     private String content;
 
+    @Lob
+    public byte[] image;
 
     public Project(Long id, String title, String content) {
         this.id = id;

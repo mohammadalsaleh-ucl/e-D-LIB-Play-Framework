@@ -1,6 +1,0 @@
-2021-03-31 10:43:03 jdbc[4]: exception
-org.h2.jdbc.JdbcSQLException: Table "PLAY_EVOLUTIONS" not found; SQL statement:
-select id, hash, apply_script, revert_script, state, last_problem from play_evolutions where state like 'applying_%' [42102-196]
-2021-04-13 16:01:28 jdbc[3]: exception
-org.h2.jdbc.JdbcSQLException: Table "PROJECT" not found; SQL statement:
-SELECT * FROM Project [42102-196]

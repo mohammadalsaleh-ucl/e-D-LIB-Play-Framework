@@ -42,27 +42,7 @@ public class RegisterController extends Controller {
      public Result userRegister(Http.Request request){
          final Form<User> boundForm = form.bindFromRequest(request);
          User data = boundForm.get();
-
-         //System.out.println(data.getPassword());
-
-        // String firstpass=hashhelper.createPassword(data.getPassword());
-       //  System.out.println(firstpass);
-
          data.setPassword(hashhelper.createPassword(data.getPassword()));
-       //  System.out.println(data.getPassword());
-
-         /*   String hi= hashhelper.createPassword(password);
-        if (BCrypt.checkpw("1212", hi))
-            System.out.println("It matches user");
-        else
-            System.out.println("It does not match user");
-
-        String firstpass=hashhelper.createPassword(password);
-
-        System.out.println(firstpass);
-
-        */
-
          UserDAO userDAO4 = new UserDAO();
          boolean isValid = userDAO4.saveUser(data);
          return ok(register.render(form, request, messagesApi.preferred(request)));
