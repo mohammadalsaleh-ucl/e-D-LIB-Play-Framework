@@ -43,17 +43,14 @@ public class UsersController extends Controller {
     @Transactional
     public Result updateUser(Long id, Http.Request request) {
 
-        // Retrieve the product by id
         User editUser = UserDAO.find.byId(id);
-
         System.out.println(editUser.getEmail());
+        System.out.println(editUser.getId());
+
         if (editUser == null){
             return badRequest("error");
         }
-
-        // Create a form based on the Product class
         Form<User> updateUserForm = formFactory.form(User.class).fill(editUser);
-        // Render the Add Product View, passing the form object
         return ok(register.render(updateUserForm,request, messagesApi.preferred(request)));
     }
 

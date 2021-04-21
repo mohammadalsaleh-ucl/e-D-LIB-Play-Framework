@@ -20,7 +20,8 @@ GET     /registerform             controllers.RegisterController.viewRegister(re
 +nocsrf
 POST     /addusers                controllers.RegisterController.userRegister(request: Request)
 
-
++nocsrf
+POST     /updateuser                controllers.RegisterController.userUpdate(request: Request)
 
 GET     /projectform             controllers.ProjectController.viewProject(request: Request)
 

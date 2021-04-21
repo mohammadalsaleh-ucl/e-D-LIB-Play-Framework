@@ -48,4 +48,14 @@ public class RegisterController extends Controller {
          return ok(register.render(form, request, messagesApi.preferred(request)));
      }
 
+
+    @Transactional
+    public Result userUpdate(Http.Request request){
+        final Form<User> boundForm = form.bindFromRequest(request);
+        User data = boundForm.get();
+        data.setPassword(hashhelper.createPassword(data.getPassword()));
+        UserDAO userDAO = new UserDAO();
+        boolean isValid = userDAO.updateUser(data);
+        return ok(register.render(form, request, messagesApi.preferred(request)));
+    }
 }

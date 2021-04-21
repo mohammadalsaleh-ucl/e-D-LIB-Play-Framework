@@ -35,7 +35,6 @@ public class UserDAO implements UserServices {
     @Transactional
     public boolean saveUser(User user) {
 
-        System.out.println("In Check save");
         boolean userSave = false;
         DB.save(user);
         if (user != null){
@@ -43,6 +42,32 @@ public class UserDAO implements UserServices {
         }
         System.out.println(userSave);
         return userSave;
+    }
+
+    @Transactional
+    public boolean updateUser(User user) {
+
+        System.out.println("In Check update");
+        boolean userUpdate = false;
+
+        System.out.println(user.getEmail());
+        System.out.println(user.getUsername());
+        System.out.println(user.getId());
+
+        String dml = "update user set username=:username,email=:email,password=:password where id = :id";
+
+        int rows = DB.sqlUpdate(dml)
+                .setParameter("username", user.getUsername())
+                .setParameter("email", user.getEmail())
+                .setParameter("password", user.getPassword())
+                .setParameter("id", 1)
+                .execute();
+
+        if (user != null){
+            userUpdate = true;
+        }
+        System.out.println(userUpdate);
+        return userUpdate;
     }
 
 }
