@@ -8,10 +8,12 @@ lazy val root = (project in file(".")).enablePlugins(PlayJava, PlayEbean ,PlayEn
 
 scalaVersion := "2.13.3"
 
-libraryDependencies ++= Seq(guice, evolutions, javaJdbc)
+libraryDependencies ++= Seq(guice, evolutions, javaJdbc,
+  "mysql" % "mysql-connector-java" % "5.1.21"
+)
 
 // Test Database
-libraryDependencies += "com.h2database" % "h2" % "1.4.196"
+//libraryDependencies += "com.h2database" % "h2" % "1.4.196"
 
 libraryDependencies += "org.webjars" % "bootstrap" % "4.6.0"
 

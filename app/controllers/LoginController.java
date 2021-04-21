@@ -51,7 +51,6 @@ public class LoginController extends Controller {
 
     @Transactional
     public Result userLogin(Http.Request request) {
-        System.out.println("hellooooooooooooooooooooo");
         final Form<User> boundForm = form.bindFromRequest(request);
         List<User> usersList=UserDAO.find.all();
             if (boundForm.hasErrors()) {
@@ -64,8 +63,6 @@ public class LoginController extends Controller {
          if(isValid) {
             msg = "Welcome " + data.getEmail() + "!";
          } else {
-            //
-            // msg = "Invalid credentials";
              return redirect(routes.LoginController.viewLogin());
          }
          System.out.println(msg);

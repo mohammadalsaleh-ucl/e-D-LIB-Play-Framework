@@ -5,11 +5,10 @@
 
 @main("Home Page"){
 
-
-
                @helper.form(action=routes.LoginController.userLogin(),Symbol("class") -> "form-login",Symbol("method")-> "post") {
                        @helper.CSRF.formField
                        <div class="form-group">
+
                        @helper.inputText(form("Email"),Symbol("type") -> "email",Symbol("class") -> "form-control")
                            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
 
