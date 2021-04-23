@@ -5,6 +5,8 @@
 
 @main("Home Page"){
 
+
+               @request.flash().get("success");
                @helper.form(action=routes.LoginController.userLogin(),Symbol("class") -> "form-login",Symbol("method")-> "post") {
                        @helper.CSRF.formField
                        <div class="form-group">

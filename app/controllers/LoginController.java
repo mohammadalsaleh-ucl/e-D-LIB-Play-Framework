@@ -63,7 +63,7 @@ public class LoginController extends Controller {
          if(isValid) {
             msg = "Welcome " + data.getEmail() + "!";
          } else {
-             return redirect(routes.LoginController.viewLogin());
+             return redirect(routes.LoginController.viewLogin()).flashing("success", "The item has been created");
          }
          System.out.println(msg);
          return redirect(routes.UsersController.users());

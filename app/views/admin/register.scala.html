@@ -6,8 +6,7 @@
 @dashboard("register") {
 
 
-
-    @if(forms==null) {
+    @if(forms.isEmpty) {
         <h3>Add a new User </h3>
 
         @helper.form(action=routes.RegisterController.userRegister(),Symbol("method")-> "post") {
