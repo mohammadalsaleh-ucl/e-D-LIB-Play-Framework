@@ -1,13 +1,11 @@
 package models;
 
-import javax.persistence.*;
+import io.ebean.Model;
+import play.data.validation.Constraints;
 
-import dao.UserDAO;
-import io.ebean.*;
-import org.mindrot.jbcrypt.BCrypt;
-import play.data.validation.*;
-
-import java.sql.Blob;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
 
 @Entity
@@ -22,11 +20,15 @@ public class User extends Model {
     private String email;
     @Constraints.Required
     private String password;
+    private String actor;
 
+    public String getActor() {
+        return actor;
+    }
 
-
-
-
+    public void setActor(String actor) {
+        this.actor = actor;
+    }
 
     public Long getId() {
         return id;

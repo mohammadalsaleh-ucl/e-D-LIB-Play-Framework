@@ -45,13 +45,13 @@ public class LoginController extends Controller {
     }
 
     public Result viewLogin(Http.Request request) {
-
         return ok(login.render(form, request, messagesApi.preferred(request)));
     }
 
     @Transactional
     public Result userLogin(Http.Request request) {
         final Form<User> boundForm = form.bindFromRequest(request);
+
         List<User> usersList=UserDAO.find.all();
             if (boundForm.hasErrors()) {
                 return badRequest(login.render(form, request, messagesApi.preferred(request)));
@@ -60,14 +60,16 @@ public class LoginController extends Controller {
          UserDAO userDAO = new UserDAO();
          String msg = "";
          boolean isValid = userDAO.findUser(data.getEmail(), data.getPassword());
-         if(isValid) {
-            msg = "Welcome " + data.getEmail() + "!";
-         } else {
-             return redirect(routes.LoginController.viewLogin()).flashing("success", "The item has been created");
-         }
-         System.out.println(msg);
-         return redirect(routes.UsersController.users());
-    }
 
+        String act=userDAO.getActor(data.getEmail());
+
+        if(isValid && userDAO.checkAdmin(act) ) {
+            return redirect(routes.UsersController.users());
+         }
+        if(isValid && userDAO.checkUser(act) ) {
+            return redirect(routes.MainpageController.viewProjects());
+        }
+        return redirect(routes.LoginController.viewLogin());
+    }
 
 }

@@ -1,6 +1,7 @@
 package dao;
 
 import io.ebean.DB;
+import io.ebean.Finder;
 import models.Project;
 
 public class ProjectDAO {
@@ -16,4 +17,7 @@ public class ProjectDAO {
         System.out.println(projectSave);
         return projectSave;
     }
+
+    public static Finder<Long, Project> find = new Finder<>(Project.class);
+
 }

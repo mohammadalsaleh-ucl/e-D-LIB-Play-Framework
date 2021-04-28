@@ -42,6 +42,7 @@ public class RegisterController extends Controller {
      public Result userRegister(Http.Request request){
          final Form<User> boundForm = form.bindFromRequest(request);
          User data = boundForm.get();
+         System.out.println(data.getActor());
          data.setPassword(hashhelper.createPassword(data.getPassword()));
          UserDAO userDAO4 = new UserDAO();
          boolean isValid = userDAO4.saveUser(data);

@@ -19,8 +19,7 @@ public class UserDAO implements UserServices {
              //   .and().eq("PASSWORD", password)
                 .findOne();
 
-        System.out.println(user.getPassword());
-        System.out.println(password);
+
 
         if (BCrypt.checkpw(password, user.getPassword()))
             userFound=true;
@@ -40,7 +39,6 @@ public class UserDAO implements UserServices {
         if (user != null){
             userSave = true;
         }
-        System.out.println(userSave);
         return userSave;
     }
 
@@ -50,9 +48,6 @@ public class UserDAO implements UserServices {
         System.out.println("In Check update");
         boolean userUpdate = false;
 
-        System.out.println(user.getEmail());
-        System.out.println(user.getUsername());
-        System.out.println(user.getId());
 
         String dml = "update user set username=:username,email=:email,password=:password where id = :id";
 
@@ -66,8 +61,33 @@ public class UserDAO implements UserServices {
         if (user != null){
             userUpdate = true;
         }
-        System.out.println(userUpdate);
         return userUpdate;
+    }
+
+
+    @Transactional
+    public boolean checkAdmin(String actor) {
+        if (actor.equals("Admin"))
+            return true;
+        return false;
+    }
+
+    @Transactional
+    public boolean checkUser(String actor) {
+        if (actor.equals("User"))
+            return true;
+        return false;
+    }
+
+
+    @Transactional
+    public String getActor(String email){
+        User user = DB.find(User.class)
+                .where()
+                .eq("EMAIL", email)
+                //   .and().eq("PASSWORD", password)
+                .findOne();
+        return user.getActor();
     }
 
 }

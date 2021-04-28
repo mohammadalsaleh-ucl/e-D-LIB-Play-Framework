@@ -1,10 +1,11 @@
-@(title: String)(content: Html)
+@import models.Project
 
+@(projectList: List[Project])
 <!DOCTYPE html>
 <html lang="en">
 
     <head>
-        <title> @title </title>
+        <title> Projects </title>
         <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("css/bootstrap.min.css")">
         <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("css/style_admin.css")">
         <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("css/fonts.css")">
@@ -13,9 +14,8 @@
     <body>
         <div class="jumbotron" style="margin-bottom: 0px">
             <h1> e-D&LIB</h1>
-
-
         </div>
+
         <nav class="navbar navbar-expand-md navbar-dark bg-dark">
             <span class="navbar-text">e-D&LIB</span>
             <ul class="navbar-nav">
@@ -33,8 +33,11 @@
                 </li>
             </ul>
         </nav>
-        @content
 
+        @for(project <- projectList) {
+        <div class="list-group">
+            <button type="button" class="list-group-item list-group-item-action">@project.getTitle</button>
+        </div>}
 
         <script src="@routes.Assets.versioned("js/jquery-3.6.0.min.js")" type="text/javascript"></script>
         <script src="@routes.Assets.versioned("js/bootstrap.min.js")" type="text/javascript"></script>

@@ -6,7 +6,7 @@
 @dashboard("register") {
 
 
-    @if(forms.isEmpty) {
+
         <h3>Add a new User </h3>
 
         @helper.form(action=routes.RegisterController.userRegister(),Symbol("method")-> "post") {
@@ -19,10 +19,12 @@
 
                 @helper.inputText(forms("password"),Symbol("type") -> "password",Symbol("class") -> "form-control")
 
+                @helper.inputRadioGroup(forms("actor"),options = Seq("Admin"->"Admin","User"->"User"))
+
                 <button type="submit" class="btn btn-primary">Add User</button>
             </div>
         }
-    } else {
+   @* } else {
         <h3>Update user </h3>
 
         @helper.form(action=routes.RegisterController.userUpdate(),Symbol("method")-> "post") {
@@ -38,7 +40,7 @@
 
                 <button type="submit" class="btn btn-primary">Update User</button>
             </div>
-        }    }
+        }    }*@
 
 
 

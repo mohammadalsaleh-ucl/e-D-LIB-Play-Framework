@@ -1,12 +1,11 @@
 package models;
 
 
-import javax.persistence.*;
+import io.ebean.Model;
 
-import io.ebean.*;
-import play.data.validation.*;
-import javax.persistence.*;
-import java.sql.Blob;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Lob;
 
 
 @Entity
@@ -20,6 +19,8 @@ public class Project extends Model {
 
     @Lob
     public byte[] image;
+
+
 
     public Project(Long id, String title, String content) {
         this.id = id;
