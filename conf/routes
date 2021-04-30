@@ -4,37 +4,43 @@
 
 # An example controller showing a sample home page
 
-GET     /                       controllers.LoginController.viewLogin(request: Request)
+GET       /                         controllers.LoginController.viewLogin(request: Request)
 
 +nocsrf
-POST     /validate               controllers.LoginController.userLogin(request: Request)
+POST      /validate                 controllers.LoginController.userLogin(request: Request)
 
 
-GET     /users                   controllers.UsersController.users()
+GET       /users                    controllers.UsersController.users()
 
 
 
-GET     /registerform             controllers.RegisterController.viewRegister(request: Request)
+GET       /registerform             controllers.RegisterController.viewRegister(request: Request)
 
 
 +nocsrf
-POST     /addusers                controllers.RegisterController.userRegister(request: Request)
+POST      /addusers                 controllers.RegisterController.userRegister(request: Request)
 
 +nocsrf
-POST     /updateuser                controllers.RegisterController.userUpdate(request: Request)
+POST      /updateuser               controllers.RegisterController.userUpdate(request: Request)
 
-GET     /projectform             controllers.ProjectController.viewProject(request: Request)
+GET       /projectform              controllers.ProjectController.viewProject(request: Request)
 
 +nocsrf
-POST     /addprojects                controllers.ProjectController.projectRegister(request: Request)
-#POST    /addUserSubmit           controllers.RegisterController.addUserSubmit()
+POST      /addprojects              controllers.ProjectController.projectRegister(request: Request)
+#POST     /addUserSubmit           controllers.RegisterController.addUserSubmit()
 
-GET      /delUser/:id              controllers.UsersController.deleteUser(id:Long)
+GET       /delUser/:id              controllers.UsersController.deleteUser(id:Long)
 
-GET		/updateUser/:id			controllers.UsersController.updateUser(id:Long,request: Request)
+GET		  /updateUser/:id			controllers.UsersController.updateUser(id:Long,request: Request)
 
 
-GET     /projectsuser                       controllers.MainpageController.viewProjects()
+GET       /projectsuser             controllers.MainpageController.viewProjects()
+
+
+
+GET       /projectslist              controllers.ProjectsListController.projects()
+
+GET       /delProject/:id            controllers.ProjectsListController.deleteProject(id:Long)
 
 # Map static resources from the /public folder to the /assets URL path
-GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
+GET      /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)

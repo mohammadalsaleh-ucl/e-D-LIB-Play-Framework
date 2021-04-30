@@ -20,7 +20,13 @@ public class Project extends Model {
     @Lob
     public byte[] image;
 
+    public byte[] getImage() {
+        return image;
+    }
 
+    public void setImage(byte[] image) {
+        this.image = image;
+    }
 
     public Project(Long id, String title, String content) {
         this.id = id;

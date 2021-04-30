@@ -7,8 +7,6 @@ import models.Project;
 public class ProjectDAO {
 
     public boolean saveProject(Project project) {
-
-      //  System.out.println("In Check save");
         boolean projectSave = false;
         DB.save(project);
         if (project != null){
@@ -19,5 +17,7 @@ public class ProjectDAO {
     }
 
     public static Finder<Long, Project> find = new Finder<>(Project.class);
+
+
 
 }
