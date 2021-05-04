@@ -18,6 +18,18 @@
         </div>
     }
 
+    @helper.form(action = routes.ProjectController.upload, Symbol("enctype") -> "multipart/form-data") {
+
+
+       @* @helper.inputFile(formproject("project_image"),Symbol("enctype") -> "multipart/form-data",Symbol("name") -> "picture")*@
+
+        <input type="file" name="picture">
+
+        <p>
+            <input type="submit">
+        </p>
+
+    }
 
 
 }

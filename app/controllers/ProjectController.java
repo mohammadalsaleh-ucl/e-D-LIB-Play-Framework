@@ -14,7 +14,12 @@ import play.mvc.Http;
 import play.mvc.Result;
 import views.html.admin.register;
 import views.html.admin.*;
+import play.libs.Files.TemporaryFile;
+import play.mvc.Controller;
+import play.mvc.Http;
+import play.mvc.Result;
 
+import java.nio.file.Paths;
 
 public class ProjectController extends Controller {
 
@@ -44,5 +49,21 @@ public class ProjectController extends Controller {
         ProjectDAO projectDAO = new ProjectDAO();
         boolean isValid = projectDAO.saveProject(data);
         return ok(project.render(form, request, messagesApi.preferred(request)));
+    }
+
+
+    public Result upload(Http.Request request) {
+        Http.MultipartFormData<TemporaryFile> body = request.body().asMultipartFormData();
+        Http.MultipartFormData.FilePart<TemporaryFile> picture = body.getFile("picture");
+        if (picture != null) {
+            String fileName = picture.getFilename();
+            long fileSize = picture.getFileSize();
+            String contentType = picture.getContentType();
+            TemporaryFile file = picture.getRef();
+            file.copyTo(Paths.get("/tmp/picture/destination.jpg"), true);
+            return ok("File uploaded");
+        } else {
+            return badRequest().flashing("error", "Missing file");
+        }
     }
 }

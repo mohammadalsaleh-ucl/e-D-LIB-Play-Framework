@@ -1,0 +1,22 @@
+@import play.mvc.Http.Request
+@(forms: Form[User])(implicit request: Request, messages: play.i18n.Messages)
+@import views.html.admin.dashboard;
+@import helper._
+
+@dashboard("update_user") {
+
+    @helper.form(action=routes.RegisterController.userUpdate(),Symbol("method")-> "post") {
+        @helper.CSRF.formField
+
+        <div class="form-group">
+            @helper.inputText(forms("id"),Symbol("type") -> "hidden")
+            @helper.inputText(forms("username"),Symbol("type") -> "text",Symbol("class") -> "form-control")
+
+            @helper.inputText(forms("email"),Symbol("type") -> "email",Symbol("class") -> "form-control")
+
+            @helper.inputText(forms("password"),Symbol("type") -> "password",Symbol("class") -> "form-control")
+
+            <button type="submit" class="btn btn-primary">Update User</button>
+        </div>
+    }
+}

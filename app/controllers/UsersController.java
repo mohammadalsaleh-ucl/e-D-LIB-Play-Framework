@@ -51,7 +51,7 @@ public class UsersController extends Controller {
             return badRequest("error");
         }
         Form<User> updateUserForm = formFactory.form(User.class).fill(editUser);
-        return ok(register.render(updateUserForm,request, messagesApi.preferred(request)));
+        return ok(update_user.render(updateUserForm,request, messagesApi.preferred(request)));
     }
 
 }

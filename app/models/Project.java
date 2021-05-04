@@ -18,14 +18,14 @@ public class Project extends Model {
     private String content;
 
     @Lob
-    public byte[] image;
+    public byte[] project_image;
 
-    public byte[] getImage() {
-        return image;
+    public byte[] getProject_image() {
+        return project_image;
     }
 
-    public void setImage(byte[] image) {
-        this.image = image;
+    public void setProject_image(byte[] project_image) {
+        this.project_image = project_image;
     }
 
     public Project(Long id, String title, String content) {

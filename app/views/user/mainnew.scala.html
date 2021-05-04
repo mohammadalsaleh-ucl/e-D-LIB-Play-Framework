@@ -8,7 +8,8 @@
         <title> Projects </title>
         <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("css/bootstrap.min.css")">
         <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("css/style_main.css")">
-        <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("css/fonts.css")">
+        <link href="@routes.Assets.versioned("../../../public/font-awesome/css/font-awesome.css.min.css")" rel="stylesheet" media="screen">
+
     </head>
 
     <body>
@@ -22,10 +23,10 @@
                 <div class="row">
                     <div class="col-md-4">
                         <div class="card text-center">
-                            <img src=@project.getImage class="card-img-top">
+                         @*   <img src=@project.getImage class="card-img-top">*@
                             <div class="card-body">
                                 <h5 class="card-body">@project.getTitle</h5>
-                                <p class="card-text"> @project.getImage</p>
+                                @*   <p class="card-text"> @project.getImage</p>*@
                                 <a href="#">Check gym</a>
                             </div>
 
