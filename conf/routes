@@ -40,6 +40,9 @@ GET       /projectsuser             controllers.MainpageController.viewProjects(
 
 GET       /projectslist              controllers.ProjectsListController.projects()
 
+GET       /projectdetails            controllers.ProjectController.projectDetails(id:Long)
+
+
 GET       /delProject/:id            controllers.ProjectsListController.deleteProject(id:Long)
 
 +nocsrf

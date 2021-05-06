@@ -42,6 +42,13 @@ public class ProjectController extends Controller {
         return ok(project.render(form, request, messagesApi.preferred(request)));
     }
 
+
+    public Result projectDetails(Long id) {
+        Project p=ProjectDAO.find.ref(id);
+        System.out.println(p.getTitle());
+        return ok(projectdetails.render(p));
+    }
+
     @Transactional
     public Result projectRegister(Http.Request request){
         final Form<Project> boundForm = form.bindFromRequest(request);
@@ -60,7 +67,7 @@ public class ProjectController extends Controller {
             long fileSize = picture.getFileSize();
             String contentType = picture.getContentType();
             TemporaryFile file = picture.getRef();
-            file.copyTo(Paths.get("/tmp/picture/destination.jpg"), true);
+           file.copyTo(Paths.get("/tmp/picture/destination.jpg"), true);
             return ok("File uploaded");
         } else {
             return badRequest().flashing("error", "Missing file");

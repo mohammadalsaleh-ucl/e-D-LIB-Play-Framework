@@ -16,7 +16,7 @@
             @for(project <- projectList) {
                 <tr scope="row">
                     <td>@project.getId</td>
-                    <td>@project.getTitle</td>
+                    <td><a href="@routes.ProjectController.projectDetails(project.getId)"><i>@project.getTitle </i></a></td>
                     <td>
                         <a href="@routes.ProjectsListController.deleteProject(project.getId)" class="btn btn-outline-danger btn-sm"
                         onclick="return confirmDel();">
