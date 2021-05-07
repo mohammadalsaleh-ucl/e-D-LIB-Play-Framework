@@ -69,6 +69,8 @@ public class LoginController extends Controller {
         if(isValid && userDAO.checkUser(act) ) {
             return redirect(routes.MainpageController.viewProjects());
         }
+
+        //flash();
         return redirect(routes.LoginController.viewLogin());
     }
 
