@@ -68,7 +68,7 @@ public class ProjectController extends Controller {
             String contentType = picture.getContentType();
             TemporaryFile file = picture.getRef();
             System.out.println(fileName);
-         //  file.copyTo(Paths.get("/tmp/picture/destination.jpg"), true);
+            file.copyTo(Paths.get("C:\\eD&LIB\\e-D-LIB\\public\\images\\uploads\\"+fileName), true);
             return ok("File uploaded");
         } else {
             return badRequest().flashing("error", "Missing file");
