@@ -7,6 +7,8 @@
         @helper.form(action=routes.RegisterController.userRegister(),Symbol("method")-> "post") {
             @helper.CSRF.formField
 
+            // print forms
+            @forms
             <div class="form-group">
                 @helper.inputText(forms("username"),Symbol("type") -> "text",Symbol("class") -> "form-control")
 

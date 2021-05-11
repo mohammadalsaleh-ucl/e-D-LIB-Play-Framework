@@ -67,11 +67,13 @@ public class ProjectController extends Controller {
             long fileSize = picture.getFileSize();
             String contentType = picture.getContentType();
             TemporaryFile file = picture.getRef();
-            System.out.println(fileName);
-            file.copyTo(Paths.get("C:\\eD&LIB\\e-D-LIB\\public\\images\\uploads\\"+fileName), true);
+            //file.
+            file.copyTo(Paths.get("C:\\Users\\melsa\\OneDrive\\Desktop\\e-d&lib\\public\\images\\uploads\\"+fileName), true);
             return ok("File uploaded");
         } else {
             return badRequest().flashing("error", "Missing file");
         }
     }
+
+
 }
