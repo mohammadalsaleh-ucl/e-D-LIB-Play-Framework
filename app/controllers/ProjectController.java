@@ -55,15 +55,18 @@ public class ProjectController extends Controller {
 
     @Transactional
     public Result projectRegister(Http.Request request){
+        ProjectDAO projectDAO = new ProjectDAO();
         final Form<Project> boundForm = form.bindFromRequest(request);
         Project data = boundForm.get();
-        ProjectDAO projectDAO = new ProjectDAO();
         boolean isValid = projectDAO.saveProject(data);
+        Long id_project=projectDAO.findProject(data.getTitle());
+        System.out.println(id_project);
+        upload(request,id_project);
         return ok(project.render(form, request, messagesApi.preferred(request)));
     }
 
 
-    public Result upload(Http.Request request) {
+    public Result upload(Http.Request request,Long id_project) {
         Http.MultipartFormData<TemporaryFile> body = request.body().asMultipartFormData();
         Http.MultipartFormData.FilePart<TemporaryFile> picture = body.getFile("picture");
         if (picture != null) {
@@ -71,29 +74,28 @@ public class ProjectController extends Controller {
             long fileSize = picture.getFileSize();
             String contentType = picture.getContentType();
             TemporaryFile file = picture.getRef();
-            //file.
             file.copyTo(Paths.get("C:\\eD&LIB\\e-D-LIB\\public\\images\\uploads\\"+fileName), true);
-            rename_file(fileName);
+            rename_file(fileName,id_project);
             return ok("File uploaded");
-        } else {
-            return badRequest().flashing("error", "Missing file");
         }
+            return badRequest().flashing("error", "Missing file");
+
     }
 
 
-    public Result rename_file(String file_name) {
-
+    public String rename_file(String file_name,Long id_project) {
+        ProjectDAO projectDAO = new ProjectDAO();
         Path source = Paths.get("C:\\eD&LIB\\e-D-LIB\\public\\images\\uploads\\"+file_name);
-
         try{
-            Files.move(source, source.resolveSibling("IMG"+file_name));
+            Files.move(source, source.resolveSibling(id_project+"_IMG_"+file_name));
+            //projectDAO.add_image(id_project,foto);
             System.out.println("File name changed succesful");
-
         } catch (IOException e) {
             System.out.println("Rename failed");
             e.printStackTrace();
         }
-        return ok("nice");
+        String foto=id_project+"_IMG_"+file_name;
+        return foto;
     }
 
 

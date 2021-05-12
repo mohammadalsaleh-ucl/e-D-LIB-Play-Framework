@@ -19,8 +19,6 @@ public class UserDAO implements UserServices {
              //   .and().eq("PASSWORD", password)
                 .findOne();
 
-
-
         if (BCrypt.checkpw(password, user.getPassword()))
             userFound=true;
         else
@@ -49,13 +47,14 @@ public class UserDAO implements UserServices {
         boolean userUpdate = false;
 
 
+        System.out.println(user.getId());
         String dml = "update user set username=:username,email=:email,password=:password where id = :id";
 
         int rows = DB.sqlUpdate(dml)
                 .setParameter("username", user.getUsername())
                 .setParameter("email", user.getEmail())
                 .setParameter("password", user.getPassword())
-                .setParameter("id", 1)
+                .setParameter("id", user.getId())
                 .execute();
 
         if (user != null){

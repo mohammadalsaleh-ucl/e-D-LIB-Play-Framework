@@ -5,31 +5,20 @@
 
 @dashboard("projects") {
 
-    @helper.form(action=routes.ProjectController.projectRegister(),Symbol("method")-> "post") {
+    @helper.form(action=routes.ProjectController.projectRegister(),Symbol("method")-> "post",Symbol("enctype") -> "multipart/form-data") {
         @helper.CSRF.formField
 
         <div class="form-group">
+            @helper.inputText(formproject("id"),Symbol("type") -> "hidden")
+
             @helper.inputText(formproject("title"),Symbol("type") -> "text",Symbol("class") -> "form-control")
 
             @helper.textarea(formproject("content"),Symbol("class") -> "form-control")
 
-            @helper.inputFile(formproject("image"),Symbol("enctype") -> "multipart/form-data")
+            <input type="file" name="picture">
+
             <button type="submit" class="btn btn-primary">Add Project</button>
         </div>
     }
-
-    @helper.form(action = routes.ProjectController.upload, Symbol("enctype") -> "multipart/form-data") {
-
-
-       @* @helper.inputFile(formproject("project_image"),Symbol("enctype") -> "multipart/form-data",Symbol("name") -> "picture")*@
-
-        <input type="file" name="picture">
-
-        <p>
-            <input type="submit">
-        </p>
-
-    }
-
 
 }
