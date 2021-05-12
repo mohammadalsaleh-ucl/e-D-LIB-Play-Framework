@@ -16,26 +16,14 @@ public class Project extends Model {
 
     private String title;
     private String content;
+    private String image_project;
 
-    @Lob
-    public byte[] project_image;
 
-    public byte[] getProject_image() {
-        return project_image;
-    }
-
-    public void setProject_image(byte[] project_image) {
-        this.project_image = project_image;
-    }
-
-    public Project(Long id, String title, String content) {
+    public Project(Long id, String title, String content, String image_project) {
         this.id = id;
         this.title = title;
         this.content = content;
-    }
-
-    public Project(){
-
+        this.image_project = image_project;
     }
 
 
@@ -63,6 +51,11 @@ public class Project extends Model {
         this.content = content;
     }
 
+    public String getImage_project() {
+        return image_project;
+    }
 
-
+    public void setImage_project(String image_project) {
+        this.image_project = image_project;
+    }
 }
