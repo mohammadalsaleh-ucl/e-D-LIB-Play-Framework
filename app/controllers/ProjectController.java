@@ -27,7 +27,6 @@ import java.nio.file.Paths;
 
 public class ProjectController extends Controller {
 
-
     private final Form<Project> form;
     private MessagesApi messagesApi;
     @Inject
@@ -62,6 +61,7 @@ public class ProjectController extends Controller {
         Long id_project=projectDAO.findProject(data.getTitle());
         System.out.println(id_project);
         upload(request,id_project);
+        projectDAO.updateProject(data,id_project);
         return ok(project.render(form, request, messagesApi.preferred(request)));
     }
 
@@ -74,27 +74,26 @@ public class ProjectController extends Controller {
             long fileSize = picture.getFileSize();
             String contentType = picture.getContentType();
             TemporaryFile file = picture.getRef();
-            file.copyTo(Paths.get("C:\\eD&LIB\\e-D-LIB\\public\\images\\uploads\\"+fileName), true);
+            file.copyTo(Paths.get("C:\\Users\\melsa\\OneDrive\\Desktop\\e-d&lib\\public\\images\\uploads\\"+fileName), true);
             rename_file(fileName,id_project);
             return ok("File uploaded");
         }
             return badRequest().flashing("error", "Missing file");
-
     }
 
 
     public String rename_file(String file_name,Long id_project) {
         ProjectDAO projectDAO = new ProjectDAO();
-        Path source = Paths.get("C:\\eD&LIB\\e-D-LIB\\public\\images\\uploads\\"+file_name);
+        Path source = Paths.get("C:\\Users\\melsa\\OneDrive\\Desktop\\e-d&lib\\public\\images\\uploads\\"+file_name);
         try{
-            Files.move(source, source.resolveSibling(id_project+"_IMG_"+file_name));
+            Files.move(source, source.resolveSibling(id_project+"_IMG.jpg"));
             //projectDAO.add_image(id_project,foto);
             System.out.println("File name changed succesful");
         } catch (IOException e) {
             System.out.println("Rename failed");
             e.printStackTrace();
         }
-        String foto=id_project+"_IMG_"+file_name;
+        String foto=id_project+"_IMG";
         return foto;
     }
 

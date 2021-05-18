@@ -1,6 +1,6 @@
 @import models.Project
 
-@(projectdetals: Project)
+@(projectdetails: Project)
 
 @import views.html.admin.dashboard;
 
@@ -10,7 +10,7 @@
     <div class="container">
 
             <!-- Portfolio Item Heading -->
-        <h1 class="my-4">@projectdetals.getTitle
+        <h1 class="my-4">@projectdetails.getTitle
             <small>Secondary Text</small>
         </h1>
 
@@ -18,12 +18,12 @@
         <div class="row">
 
             <div class="col-md-8">
-                <img class="img-fluid" src="../images/uploads/top_logo.png" alt="">
+                <img class="img-fluid" src="../images/uploads/@projectdetails.getImage_project" alt="">
             </div>
 
             <div class="col-md-4">
                 <h3 class="my-3">Project Description</h3>
-                <p>@projectdetals.getContent.</p>
+                <p>@projectdetails.getContent.</p>
                 <h3 class="my-3">Project Details</h3>
                 <ul>
                     <li>Lorem Ipsum</li>
