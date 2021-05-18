@@ -19,10 +19,13 @@ public class UserDAO implements UserServices {
              //   .and().eq("PASSWORD", password)
                 .findOne();
 
-        if (BCrypt.checkpw(password, user.getPassword()))
-            userFound=true;
+        if (user!=null)
+            if (BCrypt.checkpw(password, user.getPassword()))
+                userFound=true;
+             else
+                userFound=false;
         else
-            userFound=false;
+             userFound=false;
 
         return userFound;
     }

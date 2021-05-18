@@ -27,7 +27,10 @@ GET       /projectform              controllers.ProjectController.viewProject(re
 
 +nocsrf
 POST      /addprojects              controllers.ProjectController.projectRegister(request: Request)
-#POST     /addUserSubmit           controllers.RegisterController.addUserSubmit()
+
+
++nocsrf
+POST      /addcomments              controllers.ProjectController.addComment(request: Request)
 
 GET       /delUser/:id              controllers.UsersController.deleteUser(id:Long)
 

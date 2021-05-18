@@ -74,7 +74,7 @@ public class ProjectController extends Controller {
             long fileSize = picture.getFileSize();
             String contentType = picture.getContentType();
             TemporaryFile file = picture.getRef();
-            file.copyTo(Paths.get("C:\\Users\\melsa\\OneDrive\\Desktop\\e-d&lib\\public\\images\\uploads\\"+fileName), true);
+            file.copyTo(Paths.get("C:\\eD&LIB\\e-D-LIB\\public\\images\\uploads\\"+fileName), true);
             rename_file(fileName,id_project);
             return ok("File uploaded");
         }
@@ -84,7 +84,7 @@ public class ProjectController extends Controller {
 
     public String rename_file(String file_name,Long id_project) {
         ProjectDAO projectDAO = new ProjectDAO();
-        Path source = Paths.get("C:\\Users\\melsa\\OneDrive\\Desktop\\e-d&lib\\public\\images\\uploads\\"+file_name);
+        Path source = Paths.get("C:\\eD&LIB\\e-D-LIB\\public\\images\\uploads\\"+file_name);
         try{
             Files.move(source, source.resolveSibling(id_project+"_IMG.jpg"));
             //projectDAO.add_image(id_project,foto);
@@ -96,6 +96,14 @@ public class ProjectController extends Controller {
         String foto=id_project+"_IMG";
         return foto;
     }
+
+    @Transactional
+    public Result addComment(Http.Request request){
+
+        return ok();
+
+    }
+
 
 
 }

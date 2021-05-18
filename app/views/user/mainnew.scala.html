@@ -24,7 +24,8 @@
                     <div class="col-md-4">
                         <div class="card text-center">
                          @*   <img src=@project.getImage class="card-img-top">*@
-                            <div class="card-body">
+                        <td><a href="@routes.ProjectController.projectDetails(project.getId)"><i>@project.getTitle </i></a></td>
+                        <div class="card-body">
                                 <h5 class="card-body">@project.getTitle</h5>
                                 @*   <p class="card-text"> @project.getImage</p>*@
                                 <a href="#">Check gym</a>

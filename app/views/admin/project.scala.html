@@ -3,7 +3,7 @@
 @import views.html.admin.dashboard;
 @import helper._
 
-@dashboard("projects") {
+@dashboard("projects"){
 
     @helper.form(action=routes.ProjectController.projectRegister(),Symbol("method")-> "post",Symbol("enctype") -> "multipart/form-data") {
         @helper.CSRF.formField

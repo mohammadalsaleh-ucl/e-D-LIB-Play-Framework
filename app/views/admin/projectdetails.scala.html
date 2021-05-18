@@ -1,10 +1,12 @@
+
 @import models.Project
 
-@(projectdetails: Project)
+@(title: String)(content: Html)(projectdetails: Project)
+
 
 @import views.html.admin.dashboard;
 
-@dashboard("project details") {
+@dashboard("project details"){
 
     <!-- Page Content -->
     <div class="container">
@@ -68,6 +70,7 @@
         </div>
             <!-- /.row -->
 
+        @content
     </div>
         <!-- /.container -->
 

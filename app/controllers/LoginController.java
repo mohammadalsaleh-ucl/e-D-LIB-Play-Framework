@@ -19,7 +19,9 @@ import play.mvc.*;
 
 import javax.inject.Singleton;
 import java.util.List;
-
+import play.mvc.Http;
+import play.mvc.Result;
+import play.mvc.Controller;
 
 
 /**
@@ -52,23 +54,24 @@ public class LoginController extends Controller {
     public Result userLogin(Http.Request request) {
         final Form<User> boundForm = form.bindFromRequest(request);
 
-        List<User> usersList=UserDAO.find.all();
+        //List<User> usersList=UserDAO.find.all();
             if (boundForm.hasErrors()) {
                 return badRequest(login.render(form, request, messagesApi.preferred(request)));
             }
          User data = boundForm.get();
          UserDAO userDAO = new UserDAO();
-         String msg = "";
+
          boolean isValid = userDAO.findUser(data.getEmail(), data.getPassword());
 
-        String act=userDAO.getActor(data.getEmail());
-
-        if(isValid && userDAO.checkAdmin(act) ) {
-            return redirect(routes.UsersController.users());
+         if (isValid){
+          String act=userDAO.getActor(data.getEmail());
+             if(isValid && userDAO.checkAdmin(act) ) {
+                 return redirect(routes.UsersController.users()).flashing("message", "Login successful");
+             }
+             if(isValid && userDAO.checkUser(act) ) {
+                 return redirect(routes.MainpageController.viewProjects());
+             }
          }
-        if(isValid && userDAO.checkUser(act) ) {
-            return redirect(routes.MainpageController.viewProjects());
-        }
 
         //flash();
         return redirect(routes.LoginController.viewLogin());
