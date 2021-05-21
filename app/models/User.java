@@ -16,9 +16,7 @@ public class User extends Model {
     private Long id;
 
     private String username;
-    @Constraints.Required
     private String email;
-    @Constraints.Required
     private String password;
     private String actor;
 

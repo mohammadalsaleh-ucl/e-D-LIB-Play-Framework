@@ -33,7 +33,7 @@ public class ProjectController extends Controller {
     FormFactory formFactory;
     private UserDAO userDAO;
     private User user;
-
+    public  Project data;
     @Inject
     public ProjectController(FormFactory formFactory, MessagesApi messagesApi) {
         this.form = formFactory.form(Project.class);
@@ -56,12 +56,11 @@ public class ProjectController extends Controller {
     public Result projectRegister(Http.Request request){
         ProjectDAO projectDAO = new ProjectDAO();
         final Form<Project> boundForm = form.bindFromRequest(request);
-        Project data = boundForm.get();
+        data = boundForm.get();
         boolean isValid = projectDAO.saveProject(data);
         Long id_project=projectDAO.findProject(data.getTitle());
         System.out.println(id_project);
         upload(request,id_project);
-        projectDAO.updateProject(data,id_project);
         return ok(project.render(form, request, messagesApi.preferred(request)));
     }
 
@@ -76,25 +75,27 @@ public class ProjectController extends Controller {
             TemporaryFile file = picture.getRef();
             file.copyTo(Paths.get("C:\\eD&LIB\\e-D-LIB\\public\\images\\uploads\\"+fileName), true);
             rename_file(fileName,id_project);
+            System.out.println(data.getTitle());
             return ok("File uploaded");
         }
             return badRequest().flashing("error", "Missing file");
     }
 
 
-    public String rename_file(String file_name,Long id_project) {
+    public void rename_file(String file_name,Long id_project) {
         ProjectDAO projectDAO = new ProjectDAO();
         Path source = Paths.get("C:\\eD&LIB\\e-D-LIB\\public\\images\\uploads\\"+file_name);
         try{
-            Files.move(source, source.resolveSibling(id_project+"_IMG.jpg"));
-            //projectDAO.add_image(id_project,foto);
+            String foto=id_project+"_IMG"+projectDAO.generateRandomString()+".jpg";
+
+            Files.move(source, source.resolveSibling(foto));
+
+            projectDAO.updateProject(data,id_project,foto);
             System.out.println("File name changed succesful");
         } catch (IOException e) {
             System.out.println("Rename failed");
             e.printStackTrace();
         }
-        String foto=id_project+"_IMG";
-        return foto;
     }
 
     @Transactional

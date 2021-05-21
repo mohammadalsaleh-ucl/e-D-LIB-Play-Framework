@@ -4,20 +4,22 @@
 @import helper._
 
 @dashboard("register") {
-        @helper.form(action=routes.RegisterController.userRegister(),Symbol("method")-> "post") {
+        @helper.form(action=routes.RegisterController.userRegister(),Symbol("method")-> "post",Symbol("id") -> "registration") {
             @helper.CSRF.formField
 
+                @helper.inputText(forms("username"),Symbol("type") -> "text",Symbol("class") -> "form-control",Symbol("name") -> "username")
 
-            <div class="form-group">
-                @helper.inputText(forms("username"),Symbol("type") -> "text",Symbol("class") -> "form-control")
+                @helper.inputText(forms("email"),Symbol("type") -> "email",
+                    Symbol("class") -> "validate[required,custom[email]]",
+                    Symbol("name") -> "email",Symbol("id") -> "email",
+                    Symbol("id") -> "email")
 
-                @helper.inputText(forms("email"),Symbol("type") -> "email",Symbol("class") -> "form-control")
+
 
                 @helper.inputText(forms("password"),Symbol("type") -> "password",Symbol("class") -> "form-control")
 
                 @helper.inputRadioGroup(forms("actor"),options = Seq("Admin"->"Admin","User"->"User"))
 
                 <button type="submit" class="btn btn-primary">Add User</button>
-            </div>
         }
 }
