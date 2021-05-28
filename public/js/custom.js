@@ -2,11 +2,13 @@ function confirmDel() {
   return confirm('Are you sure?');
 }
 
-$("#registration").validationEngine().css({border : "2px solid #000"});
 
 
-// form validation
-alert( $("#registration").validationEngine('validate') );
 
-// field validation
-alert( $("#registration").validationEngine('validate') );
+$("#registration").validationEngine();
+$("#login").validationEngine();
+
+  a = 5;
+  b = 9;
+  c = a + b;
+  console.log(c);

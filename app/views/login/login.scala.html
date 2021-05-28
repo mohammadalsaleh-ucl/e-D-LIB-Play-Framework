@@ -7,14 +7,12 @@
 
 
 
-    <i class="fab fa-facebook-f"></i>
-
-    @helper.form(action=routes.LoginController.userLogin(),Symbol("class") -> "form-login",Symbol("method")-> "post") {
+    @helper.form(action=routes.LoginController.userLogin(),Symbol("class") -> "form-login",Symbol("method")-> "post",Symbol("id") -> "login") {
                        @helper.CSRF.formField
                        <div class="form-group">
 
 
-                       @helper.inputText(form("Email"),Symbol("type") -> "email",Symbol("class") -> "form-control")
+                       @helper.inputText(form("Email"),Symbol("type") -> "email",Symbol("class") -> "form-control",Symbol("class") -> "validate[required,custom[email]]")
                            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
 
                        @helper.inputText(form("Password"),Symbol("type") -> "password",Symbol("class") -> "form-control")
@@ -25,7 +23,6 @@
                            <button type="submit" class="btn btn-primary">Submit</button>
                        </div>
                    }
-
 
 
 }
