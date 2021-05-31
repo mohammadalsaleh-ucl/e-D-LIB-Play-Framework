@@ -5,10 +5,23 @@ function confirmDel() {
 
 
 
-$("#registration").validationEngine();
+        $("#registration").validate({
+            rules: {
+              username: "required",
+              password: "required",
+              password2: {
+                 required: true,
+                 equalTo: "#password"
+             }
+          },
+            messages: {
+                password: "Please enter the password",
+
+                username: "Please enter the username"
+            }
+        });
+
+
+
 $("#login").validationEngine();
 
-  a = 5;
-  b = 9;
-  c = a + b;
-  console.log(c);
