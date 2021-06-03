@@ -12,14 +12,26 @@
                        <div class="form-group">
 
 
-                       @helper.inputText(form("Email"),Symbol("type") -> "email",Symbol("class") -> "form-control",Symbol("class") -> "validate[required,custom[email]]")
+                       @helper.inputText(form("Email"),
+                           Symbol("type") -> "email",
+                           Symbol("class") -> "form-control",
+                           Symbol("class") -> "validate[required,custom[email]]",
+                           Symbol("name") -> "login-email",
+                           Symbol("id") -> "login-email")
+
+
+
                            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
 
-                       @helper.inputText(form("Password"),Symbol("type") -> "password",Symbol("class") -> "form-control")
+                       @helper.inputText(form("Password"),
+                           Symbol("type") -> "password",
+                           Symbol("class") -> "form-control")
+
                            <div class="form-group form-check">
                                <input type="checkbox" class="form-check-input" id="exampleCheck1">
                                <label class="form-check-label" for="exampleCheck1">Check me out</label>
                            </div>
+
                            <button type="submit" class="btn btn-primary">Submit</button>
                        </div>
                    }

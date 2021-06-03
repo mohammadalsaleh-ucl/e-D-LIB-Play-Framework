@@ -53,27 +53,24 @@ public class LoginController extends Controller {
     @Transactional
     public Result userLogin(Http.Request request) {
         final Form<User> boundForm = form.bindFromRequest(request);
+        if (boundForm.hasErrors()) {
+            return badRequest(login.render(form, request, messagesApi.preferred(request)));
+        }
+        User data = boundForm.get();
+        UserDAO userDAO = new UserDAO();
 
-        //List<User> usersList=UserDAO.find.all();
-            if (boundForm.hasErrors()) {
-                return badRequest(login.render(form, request, messagesApi.preferred(request)));
-            }
-         User data = boundForm.get();
-         UserDAO userDAO = new UserDAO();
+        boolean isValid = userDAO.findUser(data.getEmail(), data.getPassword());
 
-         boolean isValid = userDAO.findUser(data.getEmail(), data.getPassword());
-
-         if (isValid){
-          String act=userDAO.getActor(data.getEmail());
+        if (isValid){
+            String act=userDAO.getActor(data.getEmail());
              if(isValid && userDAO.checkAdmin(act) ) {
-                 return redirect(routes.UsersController.users()).flashing("message", "Login successful");
+                 return redirect(routes.UsersController.users());
              }
              if(isValid && userDAO.checkUser(act) ) {
                  return redirect(routes.MainpageController.viewProjects());
              }
          }
 
-        //flash();
         return redirect(routes.LoginController.viewLogin());
     }
 

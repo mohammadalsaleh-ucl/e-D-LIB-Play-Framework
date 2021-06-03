@@ -30,6 +30,20 @@ public class UserDAO implements UserServices {
         return userFound;
     }
 
+
+    @Transactional
+    public boolean findUserEmail(String email) {
+        boolean emailFound = false;
+        User user = DB.find(User.class)
+                .where()
+                .eq("EMAIL", email)
+                .findOne();
+        if (user!=null)
+            emailFound=true;
+
+        return emailFound;
+    }
+
     public static Finder<Long,User> find = new Finder<>(User.class);
 
     @Transactional

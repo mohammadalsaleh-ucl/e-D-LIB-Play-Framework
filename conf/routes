@@ -17,6 +17,8 @@ GET       /users                    controllers.UsersController.users()
 GET       /registerform             controllers.RegisterController.viewRegister(request: Request)
 
 
+GET       /finduser                 controllers.RegisterController.finduser(email:String)
+
 +nocsrf
 POST      /addusers                 controllers.RegisterController.userRegister(request: Request)
 
