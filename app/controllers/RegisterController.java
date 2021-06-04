@@ -70,8 +70,8 @@ public class RegisterController extends Controller {
         UserDAO userDAO4 = new UserDAO();
         boolean isFound=userDAO4.findUserEmail(email);
         if (isFound)
-         return ok("true");
-       return ok("false");
+         return ok("false");
+       return ok("true");
     }
 
 

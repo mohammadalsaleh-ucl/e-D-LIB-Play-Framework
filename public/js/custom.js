@@ -19,12 +19,18 @@ function confirmDel() {
                   required: true,
                   email: true,
                   remote: {
-                      url: "http://localhost:9000/finduser?name=",
-                      type: "get"}
+                      url: "/finduser",
+                      type: "get",
+                      data: {
+                          email: function() {
+                              return $( "#email" ).val();
+                          }
+                      }
+
+                  }
               }
 
             },
-
 
 
             messages: {
