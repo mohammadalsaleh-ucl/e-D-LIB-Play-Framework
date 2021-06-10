@@ -3,6 +3,7 @@ package controllers;
 import com.google.inject.Inject;
 import dao.ProjectDAO;
 import dao.UserDAO;
+import models.Comments;
 import models.Project;
 import models.User;
 import play.data.Form;
@@ -28,15 +29,21 @@ import java.nio.file.Paths;
 public class ProjectController extends Controller {
 
     private final Form<Project> form;
+    private final Form<Comments> form_comment;
+    public Form<Comments> boundFormComment;
+
     private MessagesApi messagesApi;
     @Inject
     FormFactory formFactory;
     private UserDAO userDAO;
     private User user;
     public  Project data;
+    public   Project p;
     @Inject
     public ProjectController(FormFactory formFactory, MessagesApi messagesApi) {
         this.form = formFactory.form(Project.class);
+        this.form_comment = formFactory.form(Comments.class);
+        this.boundFormComment = formFactory.form(Comments.class);
         this.messagesApi = messagesApi;
         this.userDAO = userDAO;
     }
@@ -45,11 +52,16 @@ public class ProjectController extends Controller {
         return ok(project.render(form, request, messagesApi.preferred(request)));
     }
 
+    public Result add_comments(Http.Request request){
+        boundFormComment= form_comment.bindFromRequest(request);
+        return ok(addcomments.render(boundFormComment, request, messagesApi.preferred(request)));
+    }
+
 
     public Result projectDetails(Long id) {
-        Project p=ProjectDAO.find.ref(id);
-        System.out.println(p.getTitle());
-        return ok(projectdetails.render(p));
+         p=ProjectDAO.find.ref(id);
+         System.out.println(p.getTitle());
+        return ok(project_details.render(p));
     }
 
     @Transactional
@@ -98,12 +110,7 @@ public class ProjectController extends Controller {
         }
     }
 
-    @Transactional
-    public Result addComment(Http.Request request){
 
-        return ok();
-
-    }
 
 
 

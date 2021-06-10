@@ -1,0 +1,43 @@
+@import play.mvc.Http.Request
+
+
+@(form_comment: Form[Comments])(implicit request: Request, messages: play.i18n.Messages)
+
+@()
+
+    <div class="row">
+        <div class="col-md-12">
+        @helper.form(action=routes.ProjectController.add_comments(),Symbol("method")-> "post") {
+            @helper.CSRF.formField
+
+            <div class="form-group">
+                @helper.inputText(form_comment("id"),Symbol("type") -> "hidden")
+
+                @helper.textarea(form_comment("comment"),Symbol("class") -> "form-control")
+
+                <button type="submit" class="btn btn-primary">Add Comment</button>
+            </div>
+        }
+
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-md-12">
+            <h2><b>335 Comments</b></h2>
+            <div class="userComments">
+                <div class="comment">
+                    <div class="user">Senaid B <span class="time">2019-07-15</span></div>
+                    <div class="userComment">this is my comment</div>
+                    <div class="replies">
+                        <div class="comment">
+                            <div class="user">Senaid B <span class="time">2019-07-15</span></div>
+                            <div class="userComment">this is my comment</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+

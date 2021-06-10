@@ -1,29 +1,25 @@
-
-@import models.Project
-
-@(projectdetails: Project)
-
+@import views.html.admin.add_comments
+@(pr_detail: Project)
 
 @import views.html.admin.dashboard;
 
-@dashboard("project details"){
+@dashboard("project_details"){
 
-    <!-- Page Content -->
     <div class="container">
 
-        <h1 class="my-4">@projectdetails.getTitle
+       <h1 class="my-4">@pr_detail.getTitle
             <small>Secondary Text</small>
         </h1>
 
         <div class="row">
 
             <div class="col-md-8">
-                <img class="img-fluid" src="../images/uploads/@projectdetails.getImage_project" alt="">
+                <img class="img-fluid" src="../images/uploads/@pr_detail.getImage_project" alt="">
             </div>
 
             <div class="col-md-4">
                 <h3 class="my-3">Project Description</h3>
-                <p>@projectdetails.getContent</p>
+                <p>@pr_detail.getContent</p>
                 <h3 class="my-3">Project Details</h3>
                 <ul>
                     <li>Lorem Ipsum</li>
@@ -65,29 +61,8 @@
 
         </div>
 
-        <div class="row">
-            <div class="col-md-12">
-                <textarea class="form-control" id="mainComment" placeholder="Add Public Comment" cols="30" rows="2"></textarea><br>
-                <button style="float:right" class="btn-primary btn" id="addComment">Add Comment</button>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <h2><b>335 Comments</b></h2>
-                <div class="userComments">
-                    <div class="comment">
-                        <div class="user">Senaid B <span class="time">2019-07-15</span></div>
-                        <div class="userComment">this is my comment</div>
-                        <div class="replies">
-                            <div class="comment">
-                                <div class="user">Senaid B <span class="time">2019-07-15</span></div>
-                                <div class="userComment">this is my comment</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+
+        @add_comments
 
     </div>
 

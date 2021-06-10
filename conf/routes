@@ -31,8 +31,7 @@ GET       /projectform              controllers.ProjectController.viewProject(re
 POST      /addprojects              controllers.ProjectController.projectRegister(request: Request)
 
 
-+nocsrf
-POST      /addcomments              controllers.ProjectController.addComment(request: Request)
+
 
 GET       /delUser/:id              controllers.UsersController.deleteUser(id:Long)
 
@@ -45,7 +44,11 @@ GET       /projectsuser             controllers.MainpageController.viewProjects(
 
 GET       /projectslist              controllers.ProjectsListController.projects()
 
-GET       /projectdetails            controllers.ProjectController.projectDetails(id:Long)
+
++nocsrf
+POST     /addcomment               controllers.ProjectController.add_comments(request: Request)
+
+GET     /projectdetails           controllers.ProjectController.projectDetails(id:Long)
 
 
 GET       /delProject/:id            controllers.ProjectsListController.deleteProject(id:Long)
